@@ -130,7 +130,7 @@ const MyApartments = () => {
                   </button>
                   <button
                     className="text-red-600 hover:text-red-800"
-                    oonClick={() => handleDelete(apt._id)}
+                    onClick={() => handleDelete(apt._id)}
                   >
                     <span className="material-symbols-outlined">delete</span>
                   </button>

@@ -11,6 +11,7 @@ import CreateReview from "./pages/CreateReview";
 import MyApartments from "./pages/MyApartments";
 import CreateApartment from "./pages/CreateApartment";
 import EditApartment from "./pages/EditApartment";
+import EmailVerification from "./pages/EmailVerification";
 
 const AppRouter = () => {
   return (
@@ -19,6 +20,8 @@ const AppRouter = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/verify-email/:token" element={<EmailVerification />} />
+
         <Route
           path="/browse"
           element={

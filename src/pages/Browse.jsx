@@ -27,7 +27,17 @@ const Browse = () => {
         console.error("Error loading apartments:", err);
       }
     };
+
     fetchAll();
+
+    // Оновлення кожні 5 секунд
+    const interval = setInterval(() => {
+      fetchAll();
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   useEffect(() => {
@@ -82,7 +92,7 @@ const Browse = () => {
   const totalPages = Math.ceil(filteredApartments.length / apartmentsPerPage);
 
   return (
-    <div className="flex gap-8 p-6 bg-base-200 min-h-screen">
+    <div className="flex gap-8 bg-base-200 min-h-screen">
       {/* Sidebar */}
       <aside className="w-64 bg-white rounded-lg p-4 shadow">
         <h2 className="font-bold text-lg mb-4">Search</h2>
@@ -174,17 +184,17 @@ const Browse = () => {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="join mt-8 flex justify-center">
+          <div className="mt-2 flex justify-center gap-2">
             <button
-              className="join-item btn"
+              className="btn btn-outline btn-primary"
               onClick={() => setPage((p) => Math.max(p - 1, 1))}
               disabled={page === 1}
             >
               Previous
             </button>
-            <button className="join-item btn btn-active">{page}</button>
+            <button className="btn btn-primary btn-active">{page}</button>
             <button
-              className="join-item btn"
+              className="btn btn-outline btn-primary"
               onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
               disabled={page === totalPages}
             >

@@ -35,14 +35,13 @@ const MyApartments = () => {
 
     fetchApartments();
 
-    const channel = new BroadcastChannel("apartments_channel");
-    channel.onmessage = (event) => {
-      if (event.data === "apartment_added") {
-        fetchApartments();
-      }
-    };
+    const interval = setInterval(() => {
+      fetchApartments();
+    }, 5000);
 
-    return () => channel.close();
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   const handleDelete = async (id) => {

@@ -32,16 +32,27 @@ const ApartmentDetails = () => {
       }
     };
 
-    Promise.all([fetchApartment(), fetchReviews()]).finally(() => {
-      setLoading(false);
-    });
+    fetchApartment();
+    fetchReviews();
+    setLoading(false);
+
+    const interval = setInterval(() => {
+      fetchReviews();
+    }, 5000);
+
+    return () => clearInterval(interval);
   }, [id]);
 
   const renderStars = (count) => {
-    return Array.from({ length: Math.round(count) }, (_, i) => (
+    const total = 5;
+    const filled = Math.round(count);
+
+    return Array.from({ length: total }, (_, i) => (
       <span
         key={i}
-        className="material-symbols-outlined text-yellow-500 text-sm"
+        className={`material-symbols-outlined text-sm ${
+          i < filled ? "text-yellow-500" : "text-gray-300"
+        }`}
       >
         star
       </span>

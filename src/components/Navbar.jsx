@@ -20,14 +20,12 @@ const Navbar = () => {
 
   return (
     <div className="navbar bg-base-100 text-base-content shadow-sm px-8">
-      {/* Left: Brand */}
       <div className="flex-1">
-        <Link to="/" className="text-2xl font-bold text-primary">
+        <Link to="/browse" className="text-2xl font-bold text-primary">
           RentRate
         </Link>
       </div>
 
-      {/* Center nav links */}
       {user && (
         <div className="hidden md:flex gap-6 text-base font-medium">
           <Link to="/browse" className="hover:text-primary">
@@ -53,7 +51,6 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* Right: Auth buttons */}
       <div className="flex gap-3 ml-6">
         {!user ? (
           <>
@@ -65,7 +62,10 @@ const Navbar = () => {
             </Link>
           </>
         ) : (
-          <button onClick={handleLogout} className="btn btn-sm btn-outline">
+          <button
+            onClick={handleLogout}
+            className="btn btn-sm btn-outline btn-primary"
+          >
             Logout
           </button>
         )}

@@ -8,6 +8,9 @@ import Browse from "./pages/Browse";
 import AppShell from "./layouts/AppShell";
 import ApartmentDetails from "./pages/ApartmentDetails";
 import CreateReview from "./pages/CreateReview";
+import MyApartments from "./pages/MyApartments";
+import CreateApartment from "./pages/CreateApartment";
+import EditApartment from "./pages/EditApartment";
 
 const AppRouter = () => {
   return (
@@ -16,10 +19,6 @@ const AppRouter = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        {/* <Route
-          path="/browse"
-          element={<PrivateRoute children={<Browse />} />}
-        /> */}
         <Route
           path="/browse"
           element={
@@ -42,10 +41,42 @@ const AppRouter = () => {
         />
 
         <Route
-          path="/apartments/:id/review"
+          path="/reviews/create/:id"
           element={
             <PrivateRoute>
-              <CreateReview />
+              <AppShell>
+                <CreateReview />
+              </AppShell>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/my-apartments"
+          element={
+            <PrivateRoute>
+              <AppShell>
+                <MyApartments />
+              </AppShell>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/apartments/new"
+          element={
+            <PrivateRoute>
+              <AppShell>
+                <CreateApartment />
+              </AppShell>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/apartments/edit/:id"
+          element={
+            <PrivateRoute>
+              <AppShell>
+                <EditApartment />
+              </AppShell>
             </PrivateRoute>
           }
         />

@@ -42,12 +42,6 @@ const Navbar = () => {
               </Link>
             </>
           )}
-
-          {user.role === "tenant" && (
-            <Link to="/review/new" className="hover:text-primary">
-              Create Review
-            </Link>
-          )}
         </div>
       )}
 

@@ -65,16 +65,12 @@ const CreateReview = () => {
         <div className="flex justify-end gap-4 mt-6">
           <button
             type="button"
-            className="btn"
+            className="btn btn-outline btn-primary"
             onClick={() => navigate(`/apartments/${id}`)}
           >
             Cancel
           </button>
-          <button
-            type="submit"
-            className="btn btn-primary"
-            onClick={() => navigate(-1)}
-          >
+          <button type="submit" className="btn btn-primary">
             Submit Review
           </button>
         </div>

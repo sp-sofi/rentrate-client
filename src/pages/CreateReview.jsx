@@ -9,9 +9,16 @@ const CreateReview = () => {
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
   const [comment, setComment] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (rating === 0) {
+      setError("Please select a rating before submitting.");
+      return;
+    }
+
     try {
       await API.post(`/reviews/${id}`, { rating, comment });
       navigate(`/apartments/${id}`);
@@ -35,7 +42,10 @@ const CreateReview = () => {
             {[1, 2, 3, 4, 5].map((star) => (
               <span
                 key={star}
-                onClick={() => setRating(star)}
+                onClick={() => {
+                  setRating(star);
+                  setError(""); // clear error after rating is set
+                }}
                 onMouseEnter={() => setHover(star)}
                 onMouseLeave={() => setHover(0)}
                 className={`material-symbols-outlined text-3xl cursor-pointer transition ${
@@ -48,6 +58,7 @@ const CreateReview = () => {
               </span>
             ))}
           </div>
+          {error && <p className="text-red-500 mt-1">{error}</p>}
         </div>
 
         <div className="mb-4">
